@@ -20,7 +20,7 @@
         grid-column: 1/2;
         grid-row: 1/2;
         flex-direction: column;
-        align-items: center;
+        
     
         &-logo {
             width: 100%;
@@ -32,6 +32,33 @@
             }
         }
     }
+
+    li {
+        
+    }
+
+    .cart {
+        justify-content: flex-end;
+        justify-items: flex-end;
+        display: flex;
+        
+
+        &-logo {
+            justify-content: left;
+            align-items: flex-end;
+            justify-items: flex-end;
+            height: 60px;
+            width: 60px;
+        background-color: rgb(38, 85, 38);
+        }
+        &-container {
+            width: 200px;
+            height: 250px;
+
+        }
+    }
+
+    
 
     .main {
         display: flex;

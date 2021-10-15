@@ -25,9 +25,6 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .header-logo {
     width: 100%;
@@ -36,6 +33,31 @@
   .header-logo__video {
     width: 100%;
     height: 100%;
+  }
+  .cart {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    justify-items: flex-end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .cart-logo {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    justify-items: flex-end;
+    height: 60px;
+    width: 60px;
+    background-color: #265526;
+  }
+  .cart-container {
+    width: 200px;
+    height: 250px;
   }
   .main {
     display: -webkit-box;
