@@ -33,30 +33,39 @@
         }
     }
 
-    li {
-        
+
+    .submenu {
+        position: relative;
     }
 
-    .cart {
-        justify-content: flex-end;
-        justify-items: flex-end;
-        display: flex;
-        
-
-        &-logo {
-            justify-content: left;
-            align-items: flex-end;
-            justify-items: flex-end;
-            height: 60px;
-            width: 60px;
-        background-color: rgb(38, 85, 38);
-        }
-        &-container {
-            width: 200px;
-            height: 250px;
-
-        }
+    .submenu #img-carrito {
+        width: 50px;
+        height: 50px;
     }
+    
+    .submenu #carrito{
+        display: none;
+    }
+    .submenu:hover #carrito{
+        display: block;
+        position: absolute;
+        right:0;
+    
+        top:100%;
+        z-index: 1;
+        background-color: white;
+        padding: 20px;
+        min-height: 400px;
+        min-width: 300px;
+    }
+    .vacio {
+        padding: 10px;
+        background-color: crimson;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+    }
+
 
     
 
@@ -101,23 +110,38 @@
         right: -140px;
     }
 
-    //ENLACES SECCIONES DE LOS PRODUCTOS
-    .enlaces-container {
+    .productos {
+        flex-direction: row;
+    }
+
+    //Tarjetas - productos
+    .card{
         display: flex;
         position: relative;
         cursor: pointer;
+        width: 270px;
+        height: 400px;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+        flex-direction: column;
+        margin: 15px 0 15px 0;
         overflow: hidden;
-        
+        transition: all 0.8s ease;
+        &:hover {
+            box-shadow: 2px 3px 5px 2px rgb(78, 133, 78);
+          }
 
-        &__productos {
-            width: 250px;
-            height: 250px;
-            border-radius: 25px;
+        &-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 35px;
             transition: all 500ms ease-out;
-            padding: 15px 0 15px 0;
+            padding-bottom:15px;
         }
 
-        &__title {
+        &-title {
             position: absolute;
             visibility: hidden;
             transition: all 500ms ease-out;
@@ -134,24 +158,20 @@
             font-size: 30px;
         }
 
+        &-buy{
+            width: 50px;
+            height: 50px;
+        }
+
     }
+
+
+
     //INCORPORA TEXTO A IMAGEN
     .enlaces-container:hover > .enlaces-container__title {
         opacity: 1;
       visibility: visible;
     }
-
-    //Buttons (selected - deselected)
-  .button-choosed {
-    background-color: green;
-    color: white;
-    }
-
-    .button-unchoosed {
-      color: green;
-      background-color: rgb(194, 243, 194);
-    }
-
 
 
     .footer {

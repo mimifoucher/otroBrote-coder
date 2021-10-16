@@ -13,58 +13,48 @@
         <div class="header-logo">
             <!-- <video class="header-logo__video" src="./img-productos/Otro Brote.mp4 " autoplay></video> -->
         </div>
-        <div class="cart">
-            <ul>
-                <li>
-                    <img class="cart-logo" src="./img-productos/carrito-de-compras.svg" alt="Carrito de Compras">
-                    <div class="cart-container"></div>
-                </li>
-            </ul>
-        </div> 
+            <div class="two columns u-pull-right">
+                <ul>
+                    <li class="submenu">
+                        <button id="boton-carrito"><img src="./img-productos/carrito-de-compras.svg" id="img-carrito"><span id="contadorCarrito">0</span></button>
+                            <div id="carrito"> <!--contenedor carrito-->
+                                    <table id="lista-carrito" class="u-full-width">
+                                        <thead>
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                    <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                            </div>
+                    </li>
+                </ul>
+            </div>
     </header>
 <!--MAIN-->
-    <main class="main">
+    <main class="main" id="contenedor-productos"> <!--contenedor productos-->
         <h1 class="main-title">Nuestros Productos</h1>
-        <div class="button-container">
-            <button class="button-container__retailer button-choosed">Minorista</button>
-            <button class="button-container__wholesaler button-unchoosed">Mayorista</button>
-        </div>
-        <div class="enlaces">
-            <div class="enlaces-container">
-                <img class="enlaces-container__productos" src="./img-productos/lentejas.jpg" alt="Lentejas Turcas">
-                <div class="enlaces-container__title">
+        <!-- <div class="productos">  -->
+            <!-- <div class="card"> card
+                <img class="card-img" src="./img-productos/lentejas.jpg" alt="Lentejas">
+                <div class="card-title">
                     <h2>Lentejas Turcas</h2>
                 </div>
-                <div class="enlaces-price">
-                    <p class="enlaces-price__value" id="value1">$300</p>
-                    <p class="enlaces-price__type">/Minorista</p>
+                <div class="card-content">
+                    <p>1 Kilo</p>
+                    <p >$300</p>
                 </div>
-            </div>
-            <div class="enlaces-container">
-                <img class="enlaces-container__productos" src="./img-productos/especias.jpg" alt="Especias">
-                <div class="enlaces-container__title">
-                    <h2>Especias</h2>
-                </div>
-                <div class="enlaces-price">
-                    <p class="enlaces-price__value" id="value2">$300</p>
-                    <p class="enlaces-price__type">/Minorista</p>
-                </div>
-            </div>
-            <div class="enlaces-container">
-                <img class="enlaces-container__productos" src="./img-productos/harinas.jpg" alt="Harina Orgánica 0000">
-                <div class="enlaces-container__title">
-                    <h2>Harina Orgánica 0000</h2>
-                </div>
-                <div class="enlaces-price">
-                    <p class="enlaces-price__value" id="value3">$300</p>
-                    <p class="enlaces-price__type">/Minorista</p>
-                </div>
-            </div>
-        </div>
+            </div>       -->
+        <!-- </div>  -->
     </main>
 <!--FOOTER-->
     <footer class="footer"></footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="./javascript/app.js"></script>
+    <script src="/app.js"></script>
 </body>
 </html>
