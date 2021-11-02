@@ -1,45 +1,82 @@
-let stock = [
-    {id:1,nombre: 'lentejas',precio: 300,img: '../img-productos/lentejas.jpg', cantidad: 1},
-    {id:2,nombre: 'garbanzos',precio: 350,img: '../img-productos/garbanzos.jpg', cantidad: 1},
-    {id:3,nombre: 'porotos aduki',precio: 300,img: '../img-productos/poroto-aduki.jpg', cantidad: 1},
-    {id:4,nombre: 'soja',precio: 230,img: '../img-productos/soja.jpg', cantidad: 1},
-    {id:5,nombre: 'almendras', precio: 500,img: '../img-productos/almendras.jpg', cantidad: 1},
-    {id:6,nombre: 'castañas de caju', precio: 600,img: '../img-productos/castañas-caju.jpg', cantidad:1},
-    {id:7,nombre: 'coco en escamas',precio: 200,img: '../img-productos/coco.jpg', cantidad: 1},
-    {id:8,nombre: 'chia',precio: 150,img: '../img-productos/chia.jpg', cantidad: 1},
-    {id:9,nombre: 'nueces',precio: 400,img: '../img-productos/nueces.jpg', cantidad: 1},
-    {id:10,nombre: 'pasas',precio: 200,img: '../img-productos/pasas.jpg', cantidad: 1},
-]
+const cards = document.getElementById('cards');
+const items = document.getElementById('items');
+const footer = document.getElementById('footer');
+const templateCard = document.getElementById('template-card').content;
+const templateFooter = document.getElementById('template-footer').content;
+const templateCarrito = document.getElementById('template-carrito').content;
+const fragment = document.createDocumentFragment();
+let carrito = {};
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData();
+})
+cards.addEventListener('click', e => {
+    addCarrito(e);
+})
 
-let carritoCompras = [];
-
-const contenedorProductos = document.getElementById('contenedor-productos');
-const contenedorCarrito = document.getElementById('carrito');
-const contadorCarrito = document.getElementById('contadorCarrito');
-
-
-mostrarProductos(stock);
-
-function mostrarProductos(array) {
-    for(const productos of array) {
-        let div = document.createElement('div');
-        div.classList.add('productos');
-        div.innerHTML += `<div class="card"> 
-                                <img class="card-img" src= ${productos.img}>
-                                <div class="card-title">
-                                    <h2>${productos.nombre}</h2>
-                                </div>
-                                <div class="card-content">
-                                    <p>1 Kilo</p>
-                                    <p >${productos.precio}</p>
-                                    <a><img class="card-buy" src="./img-productos/buy-card.png"></a>
-                                </div>
-                            </div>`
-        contenedorProductos.appendChild(div);
-
+const fetchData = async () => {
+    try {
+        const res = await fetch('api.json')
+        const data = await res.json()
+        // console.log(data);
+        seleccionarCard(data);
+    } catch (error) {
+        console.log(error);
     }
-    
 }
 
+const seleccionarCard = data => {
+    data.forEach(producto => {
+        templateCard.querySelector('h5').textContent = producto.title
+        templateCard.querySelector('p').textContent = producto.precio
+        templateCard.querySelector('img').setAttribute('src',producto.thumbnailUrl)
+        templateCard.querySelector('.btn-dark').dataset.id = producto.id
 
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone)
+    });
+    cards.appendChild(fragment);
+}
+
+const addCarrito = e => {
+    console.log(e.target);
+    // console.log(e.target.classList.contains('btn-dark'))
+    if (e.target.classList.contains('btn-dark')) {
+        setCarrito(e.target.parentElement)
+    }
+    e.stopPropagation()
+}
+
+const setCarrito = objeto => {
+    // console.log(objeto);
+    const producto = {
+        id: objeto.querySelector('.btn-dark').dataset.id,
+        title: objeto.querySelector('h5').textContent,
+        precio: objeto.querySelector('p').textContent,
+        cantidad: 1
+    }
+
+    if(carrito.hasOwnProperty(producto.id)) {
+        producto.cantidad = carrito[producto.id].cantidad + 1
+    }
+
+    carrito[producto.id] = {...producto}
+    seleccionarCarrito()
+}
+
+const seleccionarCarrito = () => {
+    // console.log(carrito);
+    items.innerHTML = ''
+    Object.values(carrito).forEach(producto => {
+        templateCarrito.querySelector('th').textContent = producto.id
+        templateCarrito.querySelectorAll('td')[0].textContent = producto.title
+        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
+        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.precio
+
+        const clone = templateCarrito.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    items.appendChild(fragment)
+}
